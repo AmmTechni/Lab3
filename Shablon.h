@@ -14,11 +14,8 @@ public:
     virtual int Decrypt(const unsigned char* pSrc, unsigned int SrcSz, unsigned char* pOut, unsigned int& Outsz);
 
 	int SetTemplateTable(const unsigned char* pEncodeArr, const unsigned char* pDecodeArr, size_t size);
-	int FindChar(unsigned char chr, const unsigned char* pTemplArr);
 
 private:
-	//char mEncodeArr[TemplateSize];
-	//char mDecodeArr[TemplateSize];
 
 	unsigned char mEncryptTable[2][TemplateSize];
 	unsigned char mDecryptTable[2][TemplateSize];

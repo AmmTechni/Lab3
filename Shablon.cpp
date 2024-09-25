@@ -7,58 +7,32 @@
 
 Shablon::Shablon() : mArrSize(0)
 {
-
 }
 
 Shablon::~Shablon()
 {
 }
 
-
-int Shablon::FindChar(unsigned char chr, const unsigned char* pTemplArr)
-{
-	if (!pTemplArr )
-		return -1;
-	for(unsigned int i=0; i<mArrSize; ++i)
-	{
-		if (chr == pTemplArr[i])
-			return i;
-	}
-	return -1;
-}
-
 int Shablon::Encrypt(const unsigned char* psource, unsigned int sourcesize, unsigned char* pout, unsigned int& outsize)
 {
-	int j = 0;
 	if (!psource || !pout || !sourcesize || !outsize || outsize< sourcesize)
 		return -1;
+
 	for (unsigned int i = 0; i < sourcesize; ++i)
 	{
 		pout[i] = mEncryptTable[1][ psource[i] ];
-		//pout[i] = mEncryptTable[1][i];
-		//j = FindChar(psource[i], mTemplateTable[0]);
-		//if (j < 0)
-		//	pout[i] = psource[i];
-		//else
-		//	pout[i] = mTemplateTable[1][j];
 	}
 	return 0;
 }
 
 int Shablon::Decrypt(const unsigned char* psource, unsigned int sourcesize, unsigned char* pout, unsigned int& outsize)
 {
-	int j = 0;
 	if (!psource || !pout || !sourcesize || !outsize || outsize < sourcesize)
 		return -1;
+
 	for (unsigned int i = 0; i < sourcesize; ++i)
 	{
 		pout[i] = mDecryptTable[1][ psource[i] ];
-		//pout[i] = mDecryptTable[1][i];
-		//j = FindChar(psource[i], mTemplateTable[1]);
-		//if (j < 0)
-		//	pout[i] = psource[i];
-		//else
-		//	pout[i] = mTemplateTable[0][j];
 	}
 	return 0;
 }
@@ -89,9 +63,10 @@ int Shablon::SetTemplateTable(const unsigned char* pEncodeArr, const unsigned ch
 			std::swap(mDecryptTable[1][j], mDecryptTable[1][i]);
 		}
 	}
+	mArrSize = size;
 
+/****
 	std::cout << "\n\nSetTemplateTable\n\n";
-
 	for (i = 0; i < TemplateSize; ++i)
 	{
 		std::cout << (unsigned int)mDecryptTable[0][i] << ' ';
@@ -105,8 +80,7 @@ int Shablon::SetTemplateTable(const unsigned char* pEncodeArr, const unsigned ch
 	}
 
 	std::cout << "\n\nSetTemplateTable end\n\n";
-	mArrSize = size;
-
+*****/
 
 	return 0;
 }

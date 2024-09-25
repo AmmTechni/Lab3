@@ -70,19 +70,15 @@ int InitTemplateKeytable(unsigned char *enc_arr, unsigned char * dec_arr, unsign
 int main()
 {
 	unsigned char src[BUF_SIZE], dest[BUF_SIZE] , decrypt[BUF_SIZE];
-	//unsigned char txt[TemplateSize];   //= "This is an apple";
-	//std::string str("12");
+
 	std::string str("This is an apple");
 	unsigned int size = (unsigned int)str.size();
 
 	strcpy((char *)src, str.c_str());
-	/*src[0] = 'A';
-	src[1] = 'B';*/
+
 	std::cout << "Text to encrypt:\n" << src << endl;
 
 	InitTemplateKeytable(encode_arr, decode_arr, TemplateSize);
-	//return 0;
-
 
 	Shablon obj;
 
@@ -90,7 +86,7 @@ int main()
 
 	if (obj.Encrypt(src, size, dest, size))
 	{
-		cout << "Fail to Encrypt...\n";
+		cout << "Failed to Encrypt...\n";
 		return -1;
 	}
 
@@ -98,7 +94,7 @@ int main()
 	std::cout << dest << endl;
 	if( obj.Decrypt(dest, size, decrypt, size) )
 	{
-		cout << "Fail to Decrypt...\n";
+		cout << "Failed to Decrypt...\n";
 		return -2;
 	}
 
